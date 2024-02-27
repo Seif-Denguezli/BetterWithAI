@@ -1,41 +1,43 @@
-import { Schema, model, models } from "mongoose";
+import { Document, Schema, model, models } from "mongoose";
 
-const UserSchema = new Schema({
-  clerkId: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  photo: {
-    type: String,
-    required: true,
-  },
-  firstName: {
-    type: String,
-  },
-  lastName: {
-    type: String,
-  },
-  planId: {
-    type: Number,
-    default: 1,
-  },
-  creditBalance: {
-    type: Number,
-    default: 10,
-  },
+export interface IImage extends Document {
+  title: string;
+  transformationType: string;
+  publicId: string;
+  secureURL: string;
+  width?: number;
+  height?: number;
+  config?: object;
+  transformationUrl?: string;
+  aspectRatio?: string;
+  color?: string;
+  prompt?: string;
+  author: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+  };
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+const ImageSchema = new Schema({
+  title: { type: String, required: true },
+  transformationType: { type: String, required: true },
+  publicId: { type: String, required: true },
+  secureURL: { type: String, required: true },
+  width: { type: Number },
+  height: { type: Number },
+  config: { type: Object },
+  transformationUrl: { type: String },
+  aspectRatio: { type: String },
+  color: { type: String },
+  prompt: { type: String },
+  author: { type: Schema.Types.ObjectId, ref: "User" },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
-const User = models?.User || model("User", UserSchema);
+const Image = models?.Image || model("Image", ImageSchema);
 
-export default User;
+export default Image;
