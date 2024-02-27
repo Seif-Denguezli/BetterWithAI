@@ -16,9 +16,9 @@ const Sidebar = () => {
       <div className="flex size-full flex-col gap-4">
         <Link href="/" className="sidebar-logo">
           <Image
-            src="/assets/images/logo-text.svg"
+            src="/assets/images/2logo.PNG"
             alt="logo"
-            width={180}
+            width={240}
             height={28}
           />
         </Link>
@@ -82,7 +82,7 @@ const Sidebar = () => {
           </SignedIn>
           <SignedOut>
             <Button asChild className="button bg-purple-gradient bg-cover">
-              <Link href="/sign-in">Login</Link>
+              <Link href="/sign-in"></Link>
             </Button>
           </SignedOut>
         </nav>
